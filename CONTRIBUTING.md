@@ -281,10 +281,10 @@ Smaller PRs review faster. If your change is >300 lines, consider splitting.
 ## Branching & Releases
 
 - **Main branch:** `main` is the source of truth. CI runs on `push` to `main`/`master` and PRs.
-- **Versioning:** SemVer. `0.1.x` is pre-stable; breaking changes bump minor.
+- **Versioning:** SemVer. `0.1.x` is pre-stable; breaking changes bump minor. **Keep `README.md` Packages table in sync** — after `npm version` bump, update `| Version |` to the new version (badges are dynamic via `shields.io`, table is static for quick scan).
 - **Local publish (maintainers):** `pnpm --filter @zalwan/chatlayer publish --access public` (needs granular `NPM_TOKEN` with bypass 2FA in `~/.npmrc`).
-- **OIDC publish (recommended):** `git tag v0.1.x && git push origin v0.1.x` → `.github/workflows/publish.yml` does `build→typecheck→test→publish --provenance` with `secrets.NPM_TOKEN` (id-token: write). This gives npm provenance attestations (sig `SHA256:DhQ8w...`).
-- **Never force-push `main`** or publish same version twice.
+- **OIDC publish (recommended):** `git tag v0.1.x && git push origin v0.1.x` → `.github/workflows/publish.yml` does `build→typecheck→test→publish --provenance` with `secrets.NPM_TOKEN` (id-token: write). This gives npm provenance attestations (sig `SHA256:DhQ8w...`). Tag version must match `packages/*/package.json` version.
+- **Never force-push `main`** or publish same version twice. Verify with `npm view @zalwan/chatlayer version` vs `README.md` table.
 
 ---
 
