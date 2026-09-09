@@ -21,10 +21,10 @@ Build AI chat interfaces without building chat infrastructure.
 
 ## Packages
 
-| Package                    | Version | Description                                                                       |
-| -------------------------- | ------- | --------------------------------------------------------------------------------- |
-| `@zalwan/chatlayer`        | 0.1.4   | Headless `createChat`, `ChatTransport`, NDJSON protocol, Svelte-compatible stores |
-| `@zalwan/chatlayer-svelte` | 0.1.4   | `<ChatWidget>`, `MessageList`, `Message`, `Composer`, Markdown + code blocks      |
+| Package                    | Version | Description                                                                         |
+| -------------------------- | ------- | ----------------------------------------------------------------------------------- |
+| `@zalwan/chatlayer`        | 0.1.5   | Headless `createChat`, `ChatTransport`, NDJSON protocol, Svelte-compatible stores   |
+| `@zalwan/chatlayer-svelte` | 0.1.5   | `<ChatWidget layout>`, `MessageList`, `Message`, `Composer`, Markdown + code blocks |
 
 > Original design used `@chatlayer/*` (PRD). Published as `@zalwan/*` because `@chatlayer` org is taken on npm.
 
@@ -47,10 +47,17 @@ Requires `svelte ^5`, `node >=20`.
   import { ChatWidget } from "@zalwan/chatlayer-svelte";
 </script>
 
+<!-- inline (default) — embed in page -->
 <ChatWidget endpoint="/api/chat" />
+
+<!-- bubble — floating FAB + panel -->
+<ChatWidget endpoint="/api/chat" layout="bubble" title="Tanya Zal" />
+
+<!-- fullscreen — full viewport -->
+<ChatWidget endpoint="/api/chat" layout="fullscreen" />
 ```
 
-Props: `endpoint` **or** `transport`, `theme="light"|"dark"|"system"`, `placeholder`, `title`. Re-exports `createChat`, `HttpTransport`, and all core types so you only need one dependency.
+Props: `endpoint` **or** `transport`, `layout="inline"|"bubble"|"fullscreen"` (default `inline`), `theme="light"|"dark"|"system"`, `placeholder`, `title`. Re-exports `createChat`, `HttpTransport`, and all core types so you only need one dependency.
 
 **Backend stays yours** — keys, model, persona, guardrails, RAG, rate limiting live in your `POST /api/chat` (see `PROTOCOL.md`).
 

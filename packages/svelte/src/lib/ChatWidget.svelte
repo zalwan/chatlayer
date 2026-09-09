@@ -5,10 +5,14 @@
     type ChatInstance,
     type ChatTransport,
   } from "@zalwan/chatlayer";
+  import { fade, fly } from "svelte/transition";
+  import { cubicInOut, cubicOut } from "svelte/easing";
   import Composer from "./Composer.svelte";
   import ErrorMessage from "./ErrorMessage.svelte";
   import MessageList from "./MessageList.svelte";
-  import { applyTheme, themeStore, type ThemePreference } from "./theme";
+  import { applyTheme, themeStore, type ThemePreference } from "./theme.js";
+
+  export type ChatLayout = "inline" | "bubble" | "fullscreen";
 
   let {
     endpoint,
@@ -16,12 +20,14 @@
     theme = "system",
     placeholder = "Type a message…",
     title = "Chat",
+    layout = "inline",
   }: {
     endpoint?: string;
     transport?: ChatTransport;
     theme?: ThemePreference;
     placeholder?: string;
     title?: string;
+    layout?: ChatLayout;
   } = $props();
 
   // Lazily create the chat runtime. Reading `endpoint`/`transport` inside a
@@ -41,27 +47,134 @@
   });
 
   const initial = $derived(title.slice(0, 1).toUpperCase());
+
+  let open = $state(false);
+  function toggle() {
+    open = !open;
+  }
+  function onFabKeydown(e: KeyboardEvent) {
+    if (e.key === "Escape" && open) open = false;
+  }
+
+  const reducedMotion = $derived(
+    typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
+  );
 </script>
 
-<div class="chatlayer" data-theme={$themeStore}>
-  {#if title}
-    <header class="chatlayer__header">
-      <div class="chatlayer__avatar" aria-hidden="true">
-        <span>{initial}</span>
-        <span class="chatlayer__presence"></span>
-      </div>
-      <div class="chatlayer__header-text">
-        <span class="chatlayer__title">{title}</span>
-        <span class="chatlayer__subtitle">AI assistant • Balas instan</span>
-      </div>
-      <span class="chatlayer__header-glow" aria-hidden="true"></span>
-    </header>
-  {/if}
+<svelte:window onkeydown={onFabKeydown} />
 
-  <MessageList {chat} />
-  <ErrorMessage {chat} />
-  <Composer {chat} {placeholder} />
-</div>
+{#if layout === "bubble"}
+  <!-- FAB -->
+  <button
+    onclick={toggle}
+    aria-label={open ? "Close chat" : "Open chat"}
+    aria-expanded={open}
+    class="cl-fab"
+  >
+    <span
+      class="cl-fab__ring"
+      class:cl-fab__ring--pulse={!open && !reducedMotion}
+      aria-hidden="true"
+    ></span>
+    <span class="cl-fab__sheen" aria-hidden="true"></span>
+    <span class="cl-fab__icon" class:cl-fab__icon--open={open} aria-hidden="true">
+      {#if open}
+        <!-- X -->
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg
+        >
+      {:else}
+        <!-- MessageCircle -->
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path
+            d="M21 11.5a8.38 8.38 0 0 1-1.9.5 8 8 0 0 1-7.5-4 8.38 8.38 0 0 1 .5-1.9A8 8 0 0 1 21 11.5Z"
+          /><path d="M3 21 8 17H11a8 8 0 0 0 8-8V7a8 8 0 0 0-8-8H11a8 8 0 0 0-8 8v10Z" /></svg
+        >
+      {/if}
+    </span>
+    {#if !open}
+      <span class="cl-fab__badge" aria-hidden="true">✦</span>
+    {/if}
+  </button>
+
+  {#if open}
+    <button
+      aria-label="Close chat backdrop"
+      onclick={() => (open = false)}
+      class="cl-backdrop"
+      transition:fade={{ duration: reducedMotion ? 0 : 220, easing: cubicOut }}
+    ></button>
+    <div
+      class="cl-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+      transition:fly={{
+        y: reducedMotion ? 0 : 14,
+        duration: reducedMotion ? 0 : 360,
+        easing: cubicInOut,
+      }}
+    >
+      <div class="chatlayer chatlayer--bubble-inner" data-theme={$themeStore}>
+        {#if title}
+          <header class="chatlayer__header">
+            <div class="chatlayer__avatar" aria-hidden="true">
+              <span>{initial}</span>
+              <span class="chatlayer__presence"></span>
+            </div>
+            <div class="chatlayer__header-text">
+              <span class="chatlayer__title">{title}</span>
+              <span class="chatlayer__subtitle">AI assistant • Balas instan</span>
+            </div>
+            <span class="chatlayer__header-glow" aria-hidden="true"></span>
+          </header>
+        {/if}
+        <MessageList {chat} />
+        <ErrorMessage {chat} />
+        <Composer {chat} {placeholder} />
+      </div>
+      <div class="cl-panel__footer">
+        <span class="cl-panel__dot"></span>
+        Powered by ChatLayer • {title}
+      </div>
+    </div>
+  {/if}
+{:else}
+  <div class="chatlayer" data-theme={$themeStore} data-layout={layout}>
+    {#if title}
+      <header class="chatlayer__header">
+        <div class="chatlayer__avatar" aria-hidden="true">
+          <span>{initial}</span>
+          <span class="chatlayer__presence"></span>
+        </div>
+        <div class="chatlayer__header-text">
+          <span class="chatlayer__title">{title}</span>
+          <span class="chatlayer__subtitle">AI assistant • Balas instan</span>
+        </div>
+        <span class="chatlayer__header-glow" aria-hidden="true"></span>
+      </header>
+    {/if}
+
+    <MessageList {chat} />
+    <ErrorMessage {chat} />
+    <Composer {chat} {placeholder} />
+  </div>
+{/if}
 
 <style>
   .chatlayer {
@@ -219,9 +332,183 @@
     }
   }
 
+  .chatlayer[data-layout="inline"] {
+    border: 1px solid var(--cl-border);
+    border-radius: 24px;
+    box-shadow: var(--cl-shadow);
+    overflow: hidden;
+  }
+
+  .chatlayer[data-layout="fullscreen"] {
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+  }
+
+  .chatlayer--bubble-inner {
+    height: 100%;
+    min-height: 0;
+  }
+
+  /* FAB */
+  .cl-fab {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 60;
+    width: 3.65rem;
+    height: 3.65rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: none;
+    background: #0f172a;
+    color: #ffffff;
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.18),
+      0 4px 10px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .cl-fab:hover {
+    transform: scale(1.04);
+    box-shadow:
+      0 12px 36px rgba(0, 0, 0, 0.22),
+      0 4px 10px rgba(0, 0, 0, 0.12);
+  }
+  .cl-fab:active {
+    transform: scale(0.97);
+  }
+  .cl-fab:focus-visible {
+    outline: 2px solid #0f172a;
+    outline-offset: 2px;
+  }
+  :global(.dark) .cl-fab {
+    background: #ffffff;
+    color: #0f172a;
+  }
+
+  .cl-fab__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    pointer-events: none;
+  }
+  .cl-fab__ring--pulse {
+    animation: cl-fab-pulse 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .cl-fab__sheen {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cl-fab__icon {
+    display: grid;
+    place-items: center;
+    transition: transform 0.3s ease;
+  }
+  .cl-fab__icon--open {
+    transform: rotate(90deg);
+  }
+  .cl-fab__badge {
+    position: absolute;
+    right: -0.25rem;
+    top: -0.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: #22c55e;
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 2px solid #ffffff;
+  }
+
+  .cl-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 59;
+    border: none;
+    background: rgba(15, 23, 42, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    cursor: pointer;
+  }
+
+  .cl-panel {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 5.5rem;
+    z-index: 60;
+    width: min(400px, calc(100vw - 1.5rem));
+    height: min(560px, 72vh);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(226, 232, 240, 0.7);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.18),
+      0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  :global(.dark) .cl-panel {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(51, 65, 85, 0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .cl-panel__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    border-top: 1px solid color-mix(in srgb, var(--cl-border) 70%, transparent);
+    background: color-mix(in srgb, var(--cl-bg-soft) 85%, transparent);
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    color: var(--cl-muted);
+  }
+
+  .cl-panel__dot {
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: #22c55e;
+    animation: cl-presence-pulse 2s infinite;
+  }
+
+  @keyframes cl-fab-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    70%,
+    100% {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .chatlayer__presence {
+    .chatlayer__presence,
+    .cl-fab__ring--pulse,
+    .cl-panel__dot {
       animation: none;
+    }
+    .cl-fab {
+      transition: none;
     }
   }
 </style>

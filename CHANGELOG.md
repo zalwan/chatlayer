@@ -13,6 +13,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Sem
 
 ---
 
+## [0.1.5] - 2026-09-09
+
+### Added
+
+- **Layout** `ChatWidget` `layout` prop (`ChatLayout` `inline`|`bubble`|`fullscreen`, default `inline`). `bubble` renders FAB (`cl-fab` pulse `2.6s`, `MessageCircle`/`X` SVG, badge `✦`, sheen) + backdrop `blur(6px)` `fade 220ms` + panel `rounded 24px` `blur 20px` `fly y:14 360ms` with footer `Powered by ChatLayer`. `inline` adds `data-layout` border `24px` `shadow`, `fullscreen` uses `100dvh`. Backwards-compat: default remains `inline` (same as `0.1.4`).
+
+---
+
 ## [0.1.4] - 2026-09-09
 
 ### Fixed
@@ -71,7 +79,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Sem
 
 ---
 
-[Unreleased]: https://github.com/zalwan/chatlayer/compare/v0.1.4...HEAD
+[Unreleased]: https://github.com/zalwan/chatlayer/compare/v0.1.5...HEAD
+[0.1.5]: https://github.com/zalwan/chatlayer/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/zalwan/chatlayer/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/zalwan/chatlayer/compare/v0.1.1...v0.1.3
 [0.1.1]: https://github.com/zalwan/chatlayer/compare/v0.1.0...v0.1.1
