@@ -1,4 +1,4 @@
-# @chatlayer/example-sveltekit
+# @zalwan/example-sveltekit
 
 Minimal SvelteKit app proving **< 5 min** integration (`PRD.md:164`):
 
@@ -10,7 +10,7 @@ Minimal SvelteKit app proving **< 5 min** integration (`PRD.md:164`):
 
 ```bash
 pnpm install
-pnpm --filter @chatlayer/example-sveltekit dev   # http://localhost:5173
+pnpm --filter @zalwan/example-sveltekit dev   # http://localhost:5173
 # or from this folder: pnpm dev
 ```
 

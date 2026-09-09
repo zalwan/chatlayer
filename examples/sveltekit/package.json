@@ -1,5 +1,5 @@
 {
-  "name": "@chatlayer/example-sveltekit",
+  "name": "@zalwan/example-sveltekit",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -11,8 +11,8 @@
     "typecheck": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@chatlayer/core": "workspace:*",
-    "@chatlayer/svelte": "workspace:*"
+    "@zalwan/chatlayer": "workspace:*",
+    "@zalwan/chatlayer-svelte": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",

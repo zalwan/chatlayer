@@ -16,18 +16,21 @@ Build AI chat interfaces without building chat infrastructure.
 
 ## Packages
 
-| Package             | Version | Description                                                                       |
-| ------------------- | ------- | --------------------------------------------------------------------------------- |
-| `@chatlayer/core`   | 0.1.0   | Headless `createChat`, `ChatTransport`, NDJSON protocol, Svelte-compatible stores |
-| `@chatlayer/svelte` | 0.1.0   | `<ChatWidget>`, `MessageList`, `Message`, `Composer`, Markdown + code blocks      |
+| Package                     | Version | Description                                                                       |
+| --------------------------- | ------- | --------------------------------------------------------------------------------- |
+| `@zalwan/chatlayer`         | 0.1.0   | Headless `createChat`, `ChatTransport`, NDJSON protocol, Svelte-compatible stores |
+| `@zalwan/chatlayer-svelte`  | 0.1.0   | `<ChatWidget>`, `MessageList`, `Message`, `Composer`, Markdown + code blocks      |
 
-Future: `@chatlayer/react` / `@chatlayer/vue` / `@chatlayer/web` — only when Core API stabilises and there is real demand (PRD §32).
+> Original design used `@chatlayer/*` (PRD). Published as `@zalwan/*` because `@chatlayer` org is taken on npm.
+
+Future: `@zalwan/chatlayer-react` / `vue` / `web` — only when Core API stabilises and there is real demand (PRD §32).
 
 ## Installation
 
 ```bash
-pnpm add @chatlayer/svelte
-# or npm / yarn / bun
+pnpm add @zalwan/chatlayer-svelte
+# or npm / yarn / bun — core is re-exported so one dep is enough
+# headless only: pnpm add @zalwan/chatlayer
 ```
 
 Requires `svelte ^5`, `node >=20`.
@@ -36,7 +39,7 @@ Requires `svelte ^5`, `node >=20`.
 
 ```svelte
 <script>
-  import { ChatWidget } from "@chatlayer/svelte";
+  import { ChatWidget } from "@zalwan/chatlayer-svelte";
 </script>
 
 <ChatWidget endpoint="/api/chat" />
@@ -49,8 +52,8 @@ Props: `endpoint` **or** `transport`, `theme="light"|"dark"|"system"`, `placehol
 ## Headless usage
 
 ```ts
-import { createChat, HttpTransport } from "@chatlayer/svelte";
-// or from "@chatlayer/core"
+import { createChat, HttpTransport } from "@zalwan/chatlayer-svelte";
+// or from "@zalwan/chatlayer"
 
 const chat = createChat({ transport: new HttpTransport("/api/chat") });
 
@@ -79,7 +82,7 @@ Custom UI:
 
 ```ts
 // SvelteKit example: src/routes/api/chat/+server.ts
-import type { ChatRequest, ChatEvent } from "@chatlayer/core";
+import type { ChatRequest, ChatEvent } from "@zalwan/chatlayer";
 
 export async function POST({ request }) {
   const body: ChatRequest = await request.json();
@@ -117,7 +120,7 @@ Any provider works — the frontend never sees API keys. See `PROTOCOL.md` for t
 ## Transport API
 
 ```ts
-import type { ChatTransport, ChatRequest, ChatRequestOptions, ChatEvent } from "@chatlayer/core";
+import type { ChatTransport, ChatRequest, ChatRequestOptions, ChatEvent } from "@zalwan/chatlayer";
 
 const transport: ChatTransport = {
   async *send(req: ChatRequest, opts?: ChatRequestOptions): AsyncIterable<ChatEvent> {

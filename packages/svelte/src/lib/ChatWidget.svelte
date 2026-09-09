@@ -4,7 +4,7 @@
     HttpTransport,
     type ChatInstance,
     type ChatTransport,
-  } from "@chatlayer/core";
+  } from "@zalwan/chatlayer";
   import Composer from "./Composer.svelte";
   import ErrorMessage from "./ErrorMessage.svelte";
   import MessageList from "./MessageList.svelte";

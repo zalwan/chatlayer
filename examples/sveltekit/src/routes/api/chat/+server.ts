@@ -1,6 +1,6 @@
 import type { RequestHandler } from "@sveltejs/kit";
-import type { ChatRequest } from "@chatlayer/core";
-import { NDJSON_CONTENT_TYPE, PROTOCOL_HEADER, PROTOCOL_VERSION } from "@chatlayer/core";
+import type { ChatRequest } from "@zalwan/chatlayer";
+import { NDJSON_CONTENT_TYPE, PROTOCOL_HEADER, PROTOCOL_VERSION } from "@zalwan/chatlayer";
 
 /**
  * Mock backend — echo + streaming demo.

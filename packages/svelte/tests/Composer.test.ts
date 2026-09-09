@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
 
-import { createChat, type ChatEvent, type ChatRequest } from "@chatlayer/core";
+import { createChat, type ChatEvent, type ChatRequest } from "@zalwan/chatlayer";
 import Composer from "../src/lib/Composer.svelte";
 import { flush, makeBlockingTransport, makeTransport } from "./helpers";
 

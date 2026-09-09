@@ -8,6 +8,8 @@
     "types": ["svelte"],
     "useDefineForClassFields": true,
     "paths": {
+      "@zalwan/chatlayer": ["../core/src/index.ts"],
+      "@zalwan/chatlayer/*": ["../core/src/*"],
       "@chatlayer/core": ["../core/src/index.ts"],
       "@chatlayer/core/*": ["../core/src/*"]
     }

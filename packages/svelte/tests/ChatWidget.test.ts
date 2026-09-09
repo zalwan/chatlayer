@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
 
 import ChatWidget from "../src/lib/ChatWidget.svelte";
-import type { ChatEvent, ChatRequest } from "@chatlayer/core";
+import type { ChatEvent, ChatRequest } from "@zalwan/chatlayer";
 import { makeTransport } from "./helpers";
 
 describe("ChatWidget", () => {

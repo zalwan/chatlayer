@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
 
-import type { ChatMessage } from "@chatlayer/core";
+import type { ChatMessage } from "@zalwan/chatlayer";
 import Message from "../src/lib/Message.svelte";
 
 describe("Message", () => {

@@ -1,5 +1,5 @@
 /**
- * @chatlayer/svelte — Svelte UI components for ChatLayer.
+ * @zalwan/chatlayer-svelte — Svelte UI components for ChatLayer.
  *
  * Install this package and drop `<ChatWidget endpoint="/api/chat" />` into any
  * Svelte app. It re-exports the headless core so you only need one dependency.
@@ -31,7 +31,7 @@ export {
   NDJSON_CONTENT_TYPE,
   writable,
   readable,
-} from "@chatlayer/core";
+} from "@zalwan/chatlayer";
 
 export type {
   ChatInstance,
@@ -55,4 +55,4 @@ export type {
   MessageEndEvent,
   MessageStartEvent,
   TextContent,
-} from "@chatlayer/core";
+} from "@zalwan/chatlayer";

@@ -1,4 +1,4 @@
-import type { ChatEvent, ChatRequest, ChatRequestOptions, ChatTransport } from "@chatlayer/core";
+import type { ChatEvent, ChatRequest, ChatRequestOptions, ChatTransport } from "@zalwan/chatlayer";
 
 /** A simple transport that yields a fixed event list, flushing between each. */
 export function makeTransport(events: (req: ChatRequest) => ChatEvent[]): ChatTransport {

@@ -1,4 +1,4 @@
-import { writable, type Readable } from "@chatlayer/core";
+import { writable, type Readable } from "@zalwan/chatlayer";
 
 /** User-facing theme choice. `system` follows the OS preference. */
 export type ThemePreference = "light" | "dark" | "system";

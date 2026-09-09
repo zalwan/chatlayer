@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ChatInstance } from "@chatlayer/core";
+  import type { ChatInstance } from "@zalwan/chatlayer";
 
   let { chat }: { chat: ChatInstance } = $props();
 

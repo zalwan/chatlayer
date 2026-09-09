@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ChatContent, ChatMessage } from "@chatlayer/core";
+  import type { ChatContent, ChatMessage } from "@zalwan/chatlayer";
   import Markdown from "./Markdown.svelte";
 
   let { message }: { message: ChatMessage } = $props();

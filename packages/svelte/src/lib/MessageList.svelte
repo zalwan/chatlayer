@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ChatInstance } from "@chatlayer/core";
+  import type { ChatInstance } from "@zalwan/chatlayer";
   import LoadingIndicator from "./LoadingIndicator.svelte";
   import Message from "./Message.svelte";
 

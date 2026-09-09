@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ChatWidget } from "@chatlayer/svelte";
+  import { ChatWidget } from "@zalwan/chatlayer-svelte";
 </script>
 
 <svelte:head>
@@ -28,7 +28,7 @@
   <details>
     <summary>Headless alternative (same transport)</summary>
     <pre><code
-        >{`import { createChat, HttpTransport } from "@chatlayer/core";
+        >{`import { createChat, HttpTransport } from "@zalwan/chatlayer";
 const chat = createChat({ transport: new HttpTransport("/api/chat") });
 await chat.send("Hello");
 // chat.messages, chat.status, chat.error are Svelte stores`}</code

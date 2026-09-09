@@ -20,10 +20,10 @@ importers:
 
   examples/sveltekit:
     dependencies:
-      '@chatlayer/core':
+      '@zalwan/chatlayer':
         specifier: workspace:*
         version: link:../../packages/core
-      '@chatlayer/svelte':
+      '@zalwan/chatlayer-svelte':
         specifier: workspace:*
         version: link:../../packages/svelte
     devDependencies:
@@ -66,7 +66,7 @@ importers:
 
   packages/svelte:
     dependencies:
-      '@chatlayer/core':
+      '@zalwan/chatlayer':
         specifier: workspace:*
         version: link:../core
       dompurify:

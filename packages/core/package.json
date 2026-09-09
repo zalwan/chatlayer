@@ -1,5 +1,5 @@
 {
-  "name": "@chatlayer/core",
+  "name": "@zalwan/chatlayer",
   "version": "0.1.0",
   "description": "Provider-agnostic headless chat state, streaming protocol, and transport for ChatLayer.",
   "license": "Apache-2.0",

@@ -7,6 +7,7 @@ const coreSrc = fileURLToPath(new URL("../core/src/index.ts", import.meta.url));
 export default defineConfig({
   resolve: {
     alias: {
+      "@zalwan/chatlayer": coreSrc,
       "@chatlayer/core": coreSrc,
     },
     conditions: ["browser"],
