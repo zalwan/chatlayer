@@ -1,0 +1,6 @@
+{"type":"message.start","messageId":"msg_4","role":"assistant"}
+{"type":"message.delta","messageId":"msg_4","text":"Let me search for that."}
+{"type":"tool.start","toolCallId":"call_1","name":"search_products"}
+{"type":"tool.end","toolCallId":"call_1","status":"success"}
+{"type":"message.delta","messageId":"msg_4","text":"Here are the results."}
+{"type":"message.end","messageId":"msg_4"}

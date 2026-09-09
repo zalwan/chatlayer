@@ -1,0 +1,7 @@
+{"type":"message.start","messageId":"msg_2","role":"assistant"}
+{"type":"message.delta","messageId":"msg_2","text":"Streaming"}
+{"type":"message.delta","messageId":"msg_2","text":" responses"}
+{"type":"message.delta","messageId":"msg_2","text":" are the"}
+{"type":"message.delta","messageId":"msg_2","text":" default"}
+{"type":"message.delta","messageId":"msg_2","text":" behavior."}
+{"type":"message.end","messageId":"msg_2"}

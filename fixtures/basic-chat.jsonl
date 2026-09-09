@@ -1,0 +1,5 @@
+{"type":"message.start","messageId":"msg_1","role":"assistant"}
+{"type":"message.delta","messageId":"msg_1","text":"Hello"}
+{"type":"message.delta","messageId":"msg_1","text":"! How can I help"}
+{"type":"message.delta","messageId":"msg_1","text":"?"}
+{"type":"message.end","messageId":"msg_1"}
