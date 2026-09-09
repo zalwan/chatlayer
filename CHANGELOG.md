@@ -13,6 +13,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Sem
 
 ---
 
+## [0.1.4] - 2026-09-09
+
+### Fixed
+
+- **ESM** `ERR_MODULE_NOT_FOUND: Cannot find module .../dist/lib/theme` imported from `dist/index.js` (`zal: [500] GET /`). `packages/svelte/src/index.ts:16` now `from "./lib/theme.js"` so `svelte-package` emits `dist/index.js` with `.js` extension — fixes Node ESM strict resolver (tailwind `esm-cache.loader`) for `@zalwan/chatlayer-svelte` `0.1.3` installed via npm in SvelteKit. Bump `0.1.3 → 0.1.4` for both packages.
+
+---
+
 ## [0.1.3] - 2026-09-09
 
 ### Changed
@@ -63,7 +71,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Sem
 
 ---
 
-[Unreleased]: https://github.com/zalwan/chatlayer/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/zalwan/chatlayer/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/zalwan/chatlayer/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/zalwan/chatlayer/compare/v0.1.1...v0.1.3
 [0.1.1]: https://github.com/zalwan/chatlayer/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/zalwan/chatlayer/releases/tag/v0.1.0

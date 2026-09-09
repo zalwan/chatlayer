@@ -13,8 +13,8 @@ export { default as LoadingIndicator } from "./lib/LoadingIndicator.svelte";
 export { default as ErrorMessage } from "./lib/ErrorMessage.svelte";
 export { default as Markdown } from "./lib/Markdown.svelte";
 
-export { applyTheme, themeStore } from "./lib/theme";
-export type { ThemePreference, ResolvedTheme } from "./lib/theme";
+export { applyTheme, themeStore } from "./lib/theme.js";
+export type { ThemePreference, ResolvedTheme } from "./lib/theme.js";
 
 // Headless core (re-exported for convenience).
 export {
