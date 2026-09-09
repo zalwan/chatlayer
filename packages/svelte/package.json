@@ -1,6 +1,6 @@
 {
   "name": "@zalwan/chatlayer-svelte",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Svelte UI components for ChatLayer — a provider-agnostic AI chat UI SDK.",
   "license": "Apache-2.0",
   "type": "module",
