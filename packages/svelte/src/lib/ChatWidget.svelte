@@ -80,35 +80,50 @@
     <span class="cl-fab__sheen" aria-hidden="true"></span>
     <span class="cl-fab__icon" class:cl-fab__icon--open={open} aria-hidden="true">
       {#if open}
-        <!-- X -->
+        <!-- X — cleaner 20x20 -->
         <svg
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.2"
-          stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg
-        >
-      {:else}
-        <!-- MessageCircle -->
-        <svg
-          width="22"
-          height="22"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
+          stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg
+        >
+      {:else}
+        <!-- Sparkles + bubble — modern AI vibe -->
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
           stroke-linecap="round"
           stroke-linejoin="round"
-          ><path
-            d="M21 11.5a8.38 8.38 0 0 1-1.9.5 8 8 0 0 1-7.5-4 8.38 8.38 0 0 1 .5-1.9A8 8 0 0 1 21 11.5Z"
-          /><path d="M3 21 8 17H11a8 8 0 0 0 8-8V7a8 8 0 0 0-8-8H11a8 8 0 0 0-8 8v10Z" /></svg
+          ><path d="M12 8a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4Z" /><path
+            d="M12 2v1.5M12 20.5V22M4.93 4.93l1.06 1.06M17.99 17.99l1.06 1.06M2 12h1.5M20.5 12H22M6.34 6.34 5.28 5.28M19.07 19.07l1.06-1.06"
+            opacity="0.85"
+          /><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" /></svg
         >
       {/if}
     </span>
     {#if !open}
-      <span class="cl-fab__badge" aria-hidden="true">✦</span>
+      <span class="cl-fab__badge" aria-hidden="true">
+        <svg
+          width="11"
+          height="11"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          ><path
+            d="M12 7l1.4 4.2L17.5 12l-4.1 1.4L12 17.5l-1.4-4.1L6.5 12l4.1-.8L12 7Z"
+            fill="white"
+          /></svg
+        >
+      </span>
     {/if}
   </button>
 
@@ -350,44 +365,53 @@
     min-height: 0;
   }
 
-  /* FAB */
+  /* FAB — gradient + inner highlight */
   .cl-fab {
     position: fixed;
     right: 1.25rem;
     bottom: 1.25rem;
     z-index: 60;
-    width: 3.65rem;
-    height: 3.65rem;
+    width: 3.75rem;
+    height: 3.75rem;
     display: grid;
     place-items: center;
     border-radius: 999px;
-    border: none;
-    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: radial-gradient(120% 120% at 30% 20%, #334155 0%, #0f172a 55%, #020617 100%);
     color: #ffffff;
     box-shadow:
-      0 8px 28px rgba(0, 0, 0, 0.18),
-      0 4px 10px rgba(0, 0, 0, 0.12);
+      0 10px 32px rgba(2, 6, 23, 0.28),
+      0 4px 12px rgba(2, 6, 23, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
     cursor: pointer;
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.28s ease,
+      filter 0.28s ease;
   }
   .cl-fab:hover {
-    transform: scale(1.04);
+    transform: scale(1.05) translateY(-1px);
     box-shadow:
-      0 12px 36px rgba(0, 0, 0, 0.22),
-      0 4px 10px rgba(0, 0, 0, 0.12);
+      0 14px 40px rgba(2, 6, 23, 0.32),
+      0 6px 16px rgba(2, 6, 23, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    filter: brightness(1.06);
   }
   .cl-fab:active {
-    transform: scale(0.97);
+    transform: scale(0.96);
   }
   .cl-fab:focus-visible {
-    outline: 2px solid #0f172a;
+    outline: 2px solid #38bdf8;
     outline-offset: 2px;
   }
   :global(.dark) .cl-fab {
-    background: #ffffff;
+    background: radial-gradient(120% 120% at 30% 20%, #f8fafc 0%, #e2e8f0 55%, #cbd5e1 100%);
     color: #0f172a;
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow:
+      0 10px 32px rgba(0, 0, 0, 0.22),
+      0 4px 12px rgba(0, 0, 0, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .cl-fab__ring {
