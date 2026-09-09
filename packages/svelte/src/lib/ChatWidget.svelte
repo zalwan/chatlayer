@@ -201,16 +201,27 @@
     position: absolute;
     inset: auto -30% -60% -30%;
     height: 60%;
-    background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--cl-accent) 8%, transparent) 0%, transparent 70%);
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      color-mix(in srgb, var(--cl-accent) 8%, transparent) 0%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 
   @keyframes cl-presence-pulse {
-    0%, 100% { box-shadow: 0 0 0 2px rgba(34,197,94,0.25); }
-    50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+    0%,
+    100% {
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+    }
+    50% {
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .chatlayer__presence { animation: none; }
+    .chatlayer__presence {
+      animation: none;
+    }
   }
 </style>

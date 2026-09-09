@@ -49,7 +49,13 @@
     scrollbar-width: thin;
     scrollbar-color: var(--cl-border) transparent;
     /* subtle top fade */
-    mask-image: linear-gradient(to bottom, transparent 0, black 12px, black calc(100% - 12px), transparent 100%);
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      black 12px,
+      black calc(100% - 12px),
+      transparent 100%
+    );
   }
 
   .chatlayer-messages::-webkit-scrollbar {
@@ -98,13 +104,23 @@
   }
 
   @keyframes cl-fade-in {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .chatlayer-messages { scroll-behavior: auto; }
+    .chatlayer-messages {
+      scroll-behavior: auto;
+    }
     .chatlayer-messages__loading,
-    .chatlayer-messages__empty { animation: none; }
+    .chatlayer-messages__empty {
+      animation: none;
+    }
   }
 </style>

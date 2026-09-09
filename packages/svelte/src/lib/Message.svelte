@@ -50,14 +50,20 @@
     line-height: 1.5;
     font-size: 0.92rem;
     position: relative;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 4px 12px rgba(0, 0, 0, 0.04);
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
     will-change: transform;
   }
 
   .chatlayer-message__bubble:hover {
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 8px 20px rgba(0,0,0,0.06);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      0 8px 20px rgba(0, 0, 0, 0.06);
   }
 
   .chatlayer-message[data-role="user"] .chatlayer-message__bubble {
@@ -101,7 +107,11 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .chatlayer-message { animation: none; }
-    .chatlayer-message__bubble:hover { transform: none; }
+    .chatlayer-message {
+      animation: none;
+    }
+    .chatlayer-message__bubble:hover {
+      transform: none;
+    }
   }
 </style>

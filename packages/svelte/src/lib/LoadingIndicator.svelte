@@ -30,7 +30,7 @@
     border-bottom-left-radius: 6px;
     background: var(--cl-assistant-bg);
     border: 1px solid color-mix(in srgb, var(--cl-border) 70%, transparent);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   }
 
   .chatlayer-loading__dots {
@@ -47,8 +47,12 @@
     animation: cl-typing 1.25s infinite ease-in-out;
   }
 
-  .chatlayer-loading__dot:nth-child(2) { animation-delay: 0.18s; }
-  .chatlayer-loading__dot:nth-child(3) { animation-delay: 0.36s; }
+  .chatlayer-loading__dot:nth-child(2) {
+    animation-delay: 0.18s;
+  }
+  .chatlayer-loading__dot:nth-child(3) {
+    animation-delay: 0.36s;
+  }
 
   .chatlayer-loading__label {
     font-size: 0.78rem;
@@ -57,11 +61,22 @@
   }
 
   @keyframes cl-typing {
-    0%, 80%, 100% { opacity: 0.35; transform: translateY(0) scale(0.9); }
-    40% { opacity: 1; transform: translateY(-2px) scale(1); }
+    0%,
+    80%,
+    100% {
+      opacity: 0.35;
+      transform: translateY(0) scale(0.9);
+    }
+    40% {
+      opacity: 1;
+      transform: translateY(-2px) scale(1);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .chatlayer-loading__dot { animation: none; opacity: 0.6; }
+    .chatlayer-loading__dot {
+      animation: none;
+      opacity: 0.6;
+    }
   }
 </style>

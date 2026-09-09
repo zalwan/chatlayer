@@ -41,7 +41,7 @@
     border-radius: 12px;
     font-size: 0.84rem;
     line-height: 1.4;
-    animation: cl-error-in 0.32s cubic-bezier(0.16,1,0.3,1) both;
+    animation: cl-error-in 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
     box-shadow: 0 2px 10px color-mix(in srgb, var(--cl-error-border) 35%, transparent);
   }
 
@@ -55,10 +55,16 @@
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    transition:
+      transform 0.15s ease,
+      opacity 0.15s ease;
   }
-  .chatlayer-error__retry:hover { transform: translateY(-1px); }
-  .chatlayer-error__retry:active { transform: scale(0.97); }
+  .chatlayer-error__retry:hover {
+    transform: translateY(-1px);
+  }
+  .chatlayer-error__retry:active {
+    transform: scale(0.97);
+  }
 
   .chatlayer-error__retry:disabled {
     cursor: default;
@@ -67,11 +73,19 @@
   }
 
   @keyframes cl-error-in {
-    from { opacity: 0; transform: translateY(6px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .chatlayer-error { animation: none; }
+    .chatlayer-error {
+      animation: none;
+    }
   }
 </style>

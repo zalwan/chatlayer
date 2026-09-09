@@ -59,7 +59,9 @@
         aria-label="Stop generation"
         title="Stop"
       >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="9" height="9" rx="1.5" fill="currentColor" /></svg>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"
+          ><rect x="2.5" y="2.5" width="9" height="9" rx="1.5" fill="currentColor" /></svg
+        >
       </button>
     {:else}
       <button
@@ -69,7 +71,20 @@
         aria-label="Send message"
         title="Send"
       >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14.5 1.5L7.2 8.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14.5 1.5L9.1 14.1L7.2 8.2L1.5 6.2L14.5 1.5Z" fill="currentColor" stroke="currentColor" stroke-width="1.15" stroke-linejoin="round"/></svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+          ><path
+            d="M14.5 1.5L7.2 8.2"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          /><path
+            d="M14.5 1.5L9.1 14.1L7.2 8.2L1.5 6.2L14.5 1.5Z"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="1.15"
+            stroke-linejoin="round"
+          /></svg
+        >
       </button>
     {/if}
   </div>
@@ -94,13 +109,18 @@
     border: 1px solid var(--cl-border);
     border-radius: 999px;
     background: var(--cl-input-bg);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition:
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
+      transform 0.18s ease;
   }
 
   .chatlayer-composer__field:focus-within {
     border-color: color-mix(in srgb, var(--cl-accent) 30%, var(--cl-border));
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cl-accent) 12%, transparent), 0 4px 16px rgba(0,0,0,0.06);
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--cl-accent) 12%, transparent),
+      0 4px 16px rgba(0, 0, 0, 0.06);
     transform: translateY(-1px);
   }
 
@@ -133,7 +153,11 @@
     border: none;
     border-radius: 999px;
     cursor: pointer;
-    transition: transform 0.16s cubic-bezier(0.16,1,0.3,1), opacity 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+    transition:
+      transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.16s ease,
+      background 0.16s ease,
+      box-shadow 0.16s ease;
   }
 
   .chatlayer-composer__action:active {
@@ -143,18 +167,18 @@
   .chatlayer-composer__send {
     background: var(--cl-accent);
     color: var(--cl-bg);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   }
 
   .chatlayer-composer__send:hover:not(:disabled) {
     transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.16);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
   }
 
   .chatlayer-composer__stop {
     background: var(--cl-danger);
     color: #fff;
-    box-shadow: 0 2px 8px rgba(239,68,68,0.3);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
     animation: cl-stop-pulse 1.4s infinite;
   }
 
@@ -174,12 +198,22 @@
   }
 
   @keyframes cl-stop-pulse {
-    0%,100% { box-shadow: 0 2px 8px rgba(239,68,68,0.3); }
-    50% { box-shadow: 0 2px 14px rgba(239,68,68,0.45); }
+    0%,
+    100% {
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    }
+    50% {
+      box-shadow: 0 2px 14px rgba(239, 68, 68, 0.45);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .chatlayer-composer__field:focus-within { transform: none; }
-    .chatlayer-composer__action, .chatlayer-composer__stop { animation: none; }
+    .chatlayer-composer__field:focus-within {
+      transform: none;
+    }
+    .chatlayer-composer__action,
+    .chatlayer-composer__stop {
+      animation: none;
+    }
   }
 </style>

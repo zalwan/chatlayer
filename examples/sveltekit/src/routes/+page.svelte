@@ -11,21 +11,28 @@
     <h1>ChatLayer <span>SvelteKit Example</span></h1>
     <p>
       Provider-agnostic widget → <code>/api/chat</code> mock streaming (see
-      <code>src/routes/api/chat/+server.ts</code>). Replace the handler with your
-      OpenAI / Anthropic / Ollama backend — frontend stays the same.
+      <code>src/routes/api/chat/+server.ts</code>). Replace the handler with your OpenAI / Anthropic
+      / Ollama backend — frontend stays the same.
     </p>
   </header>
 
   <section class="frame">
-    <ChatWidget endpoint="/api/chat" title="ChatLayer Demo" placeholder="Type a message…" theme="system" />
+    <ChatWidget
+      endpoint="/api/chat"
+      title="ChatLayer Demo"
+      placeholder="Type a message…"
+      theme="system"
+    />
   </section>
 
   <details>
     <summary>Headless alternative (same transport)</summary>
-    <pre><code>{`import { createChat, HttpTransport } from "@chatlayer/core";
+    <pre><code
+        >{`import { createChat, HttpTransport } from "@chatlayer/core";
 const chat = createChat({ transport: new HttpTransport("/api/chat") });
 await chat.send("Hello");
-// chat.messages, chat.status, chat.error are Svelte stores`}</code></pre>
+// chat.messages, chat.status, chat.error are Svelte stores`}</code
+      ></pre>
   </details>
 </main>
 
