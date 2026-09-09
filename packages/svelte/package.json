@@ -1,6 +1,6 @@
 {
   "name": "@zalwan/chatlayer-svelte",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Svelte UI components for ChatLayer — a provider-agnostic AI chat UI SDK.",
   "license": "Apache-2.0",
   "type": "module",
@@ -16,8 +16,22 @@
   "files": [
     "dist",
     "src",
+    "README.md",
     "!src/**/*.test.ts"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zalwan/chatlayer.git",
+    "directory": "packages/svelte"
+  },
+  "homepage": "https://github.com/zalwan/chatlayer#readme",
+  "bugs": {
+    "url": "https://github.com/zalwan/chatlayer/issues"
+  },
   "keywords": [
     "svelte",
     "chat",

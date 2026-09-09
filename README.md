@@ -1,5 +1,10 @@
 # ChatLayer
 
+[![npm version](https://img.shields.io/npm/v/@zalwan/chatlayer?label=@zalwan%2Fchatlayer&color=0f172a)](https://www.npmjs.com/package/@zalwan/chatlayer)
+[![npm version](https://img.shields.io/npm/v/@zalwan/chatlayer-svelte?label=@zalwan%2Fchatlayer-svelte)](https://www.npmjs.com/package/@zalwan/chatlayer-svelte)
+[![CI](https://github.com/zalwan/chatlayer/actions/workflows/ci.yml/badge.svg)](https://github.com/zalwan/chatlayer/actions)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](./LICENSE)
+
 **The open-source layer for AI chatbots. Bring your own AI. We handle the chat.**
 
 An open-source, provider-agnostic SDK for building modern AI chat interfaces with streaming, headless state management, and an extensible chat protocol.
@@ -16,10 +21,10 @@ Build AI chat interfaces without building chat infrastructure.
 
 ## Packages
 
-| Package                     | Version | Description                                                                       |
-| --------------------------- | ------- | --------------------------------------------------------------------------------- |
-| `@zalwan/chatlayer`         | 0.1.0   | Headless `createChat`, `ChatTransport`, NDJSON protocol, Svelte-compatible stores |
-| `@zalwan/chatlayer-svelte`  | 0.1.0   | `<ChatWidget>`, `MessageList`, `Message`, `Composer`, Markdown + code blocks      |
+| Package                    | Version | Description                                                                       |
+| -------------------------- | ------- | --------------------------------------------------------------------------------- |
+| `@zalwan/chatlayer`        | 0.1.0   | Headless `createChat`, `ChatTransport`, NDJSON protocol, Svelte-compatible stores |
+| `@zalwan/chatlayer-svelte` | 0.1.0   | `<ChatWidget>`, `MessageList`, `Message`, `Composer`, Markdown + code blocks      |
 
 > Original design used `@chatlayer/*` (PRD). Published as `@zalwan/*` because `@chatlayer` org is taken on npm.
 

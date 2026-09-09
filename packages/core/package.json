@@ -1,6 +1,6 @@
 {
   "name": "@zalwan/chatlayer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Provider-agnostic headless chat state, streaming protocol, and transport for ChatLayer.",
   "license": "Apache-2.0",
   "type": "module",
@@ -17,8 +17,22 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "README.md"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zalwan/chatlayer.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/zalwan/chatlayer#readme",
+  "bugs": {
+    "url": "https://github.com/zalwan/chatlayer/issues"
+  },
   "keywords": [
     "chat",
     "ai",
