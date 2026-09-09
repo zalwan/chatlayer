@@ -6,7 +6,11 @@
     "checkJs": true,
     "noEmit": true,
     "types": ["svelte"],
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "paths": {
+      "@chatlayer/core": ["../core/src/index.ts"],
+      "@chatlayer/core/*": ["../core/src/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.svelte", "src/**/*.js", "tests/**/*.ts"]
 }

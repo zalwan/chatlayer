@@ -1,12 +1,14 @@
 <script lang="ts">
-  import type { ChatMessage } from "@chatlayer/core";
+  import type { ChatContent, ChatMessage } from "@chatlayer/core";
   import Markdown from "./Markdown.svelte";
 
   let { message }: { message: ChatMessage } = $props();
 
   const text = $derived(
     message.content
-      .filter((part) => part.type === "text")
+      .filter(
+        (part: ChatContent): part is Extract<ChatContent, { type: "text" }> => part.type === "text",
+      )
       .map((part) => part.text)
       .join(""),
   );
