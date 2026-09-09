@@ -154,6 +154,22 @@ pnpm format
 
 No API keys in the browser, no telemetry, no hidden network requests. Backend is the authority for auth, policy, and data. See `SECURITY.md`.
 
+## Contributing
+
+We love contributions — see [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the 5-minute setup, project structure, `pnpm build/typecheck/test/format` workflow, protocol rules, and PR checklist. Also see [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md).
+
+Quick start for contributors:
+
+```bash
+git clone https://github.com/zalwan/chatlayer.git && cd chatlayer
+pnpm install
+pnpm build
+pnpm typecheck && pnpm test
+pnpm dev  # examples/sveltekit on http://localhost:5173
+```
+
+Good first issues: `docs`, `tests`, `a11y`, `examples`, `fixtures`.
+
 ## License
 
 Apache-2.0 — see `LICENSE`. Copyright 2026 ChatLayer Contributors.
