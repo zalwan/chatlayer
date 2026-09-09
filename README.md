@@ -150,13 +150,17 @@ pnpm build
 pnpm format
 ```
 
+## Changelog
+
+See [`CHANGELOG.md`](./CHANGELOG.md) — every version documents `Added`/`Changed`/`Fixed`. Unreleased tracks next release. Please add an entry there with every PR.
+
 ## Security
 
 No API keys in the browser, no telemetry, no hidden network requests. Backend is the authority for auth, policy, and data. See `SECURITY.md`.
 
 ## Contributing
 
-We love contributions — see [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the 5-minute setup, project structure, `pnpm build/typecheck/test/format` workflow, protocol rules, and PR checklist. Also see [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md).
+We love contributions — see [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the 5-minute setup, project structure, `pnpm build/typecheck/test/format` workflow, `CHANGELOG.md` rule, protocol rules, and PR checklist. Also see [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md).
 
 Quick start for contributors:
 

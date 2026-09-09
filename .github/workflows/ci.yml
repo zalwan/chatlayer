@@ -40,3 +40,12 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+      - name: Check CHANGELOG.md updated (reminder)
+        if: github.event_name == 'pull_request'
+        run: |
+          if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "CHANGELOG.md"; then
+            echo "CHANGELOG.md updated ✓"
+          else
+            echo "::warning::CHANGELOG.md not updated — please add entry to Unreleased (see CONTRIBUTING.md)"
+          fi

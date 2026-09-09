@@ -270,11 +270,15 @@ Before marking ready:
 - [ ] `pnpm typecheck` → `0 errors` (3 warnings in svelte allowed)
 - [ ] `pnpm test` → `54 passed`
 - [ ] `fixtures` / `PROTOCOL.md` updated if protocol changed
+- [ ] `CHANGELOG.md` updated — add entry to `Unreleased` (`Added`/`Changed`/`Fixed`) for every behavior/API/UI/docs change
+- [ ] `README.md` Packages table version updated if `packages/*/package.json` version bumped
 - [ ] No new `svelte-check` warnings
-- [ ] Commit messages are descriptive
+- [ ] Commit messages are descriptive (Conventional Commits encouraged)
 - [ ] PR description explains _why_, not just _what_, and links issue
 
 Smaller PRs review faster. If your change is >300 lines, consider splitting.
+
+> **Changelog is mandatory.** Every PR that changes behavior, API, UI, or docs must touch `CHANGELOG.md`. Fixes that are docs-only with no version bump still go to `Unreleased`. CI will remind you if `CHANGELOG.md` is untouched.
 
 ---
 
@@ -282,9 +286,10 @@ Smaller PRs review faster. If your change is >300 lines, consider splitting.
 
 - **Main branch:** `main` is the source of truth. CI runs on `push` to `main`/`master` and PRs.
 - **Versioning:** SemVer. `0.1.x` is pre-stable; breaking changes bump minor. **Keep `README.md` Packages table in sync** — after `npm version` bump, update `| Version |` to the new version (badges are dynamic via `shields.io`, table is static for quick scan).
+- **Changelog:** `CHANGELOG.md` follows Keep a Changelog. Every release moves `Unreleased` entries to a new `## [x.y.z] - YYYY-MM-DD` section. Compare links at bottom auto-generate diffs. Never edit past releases — only `Unreleased` and the new version heading.
 - **Local publish (maintainers):** `pnpm --filter @zalwan/chatlayer publish --access public` (needs granular `NPM_TOKEN` with bypass 2FA in `~/.npmrc`).
 - **OIDC publish (recommended):** `git tag v0.1.x && git push origin v0.1.x` → `.github/workflows/publish.yml` does `build→typecheck→test→publish --provenance` with `secrets.NPM_TOKEN` (id-token: write). This gives npm provenance attestations (sig `SHA256:DhQ8w...`). Tag version must match `packages/*/package.json` version.
-- **Never force-push `main`** or publish same version twice. Verify with `npm view @zalwan/chatlayer version` vs `README.md` table.
+- **Never force-push `main`** or publish same version twice. Verify with `npm view @zalwan/chatlayer version` vs `README.md` table vs `CHANGELOG.md` latest heading.
 
 ---
 
