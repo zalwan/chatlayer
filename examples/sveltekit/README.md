@@ -14,6 +14,21 @@ pnpm --filter @zalwan/example-sveltekit dev   # http://localhost:5173
 # or from this folder: pnpm dev
 ```
 
+## Backends
+
+| Endpoint           | Provider                  | Needs                                                                           |
+| ------------------ | ------------------------- | ------------------------------------------------------------------------------- |
+| `/api/chat`        | Mock streaming            | nothing — default                                                               |
+| `/api/chat-openai` | OpenAI (`gpt-4o-mini`)    | `OPENAI_API_KEY`, optional `OPENAI_MODEL`                                       |
+| `/api/chat-ollama` | Ollama local (`llama3.1`) | `ollama serve` + `ollama pull llama3.1`, optional `OLLAMA_URL` / `OLLAMA_MODEL` |
+
+```bash
+OPENAI_API_KEY=sk-... pnpm dev          # OpenAI tab works
+OLLAMA_URL=http://localhost:11434 pnpm dev  # Ollama tab works
+```
+
+Shared converter lives in `src/lib/server/chat-events.ts` — frontend stays identical, only the handler knows the provider.
+
 ## What to look at
 
 - `src/routes/+page.svelte` — widget + headless snippet.

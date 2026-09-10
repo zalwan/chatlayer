@@ -4,7 +4,8 @@
   let { chat, placeholder = "Type a message…" }: { chat: ChatInstance; placeholder?: string } =
     $props();
 
-  const { status } = chat;
+  // Reactive read of the `chat` prop (avoids state_referenced_locally warning).
+  const status = $derived(chat.status);
 
   let value = $state("");
 
@@ -13,10 +14,16 @@
 
   let textareaEl: HTMLTextAreaElement | null = $state(null);
 
+  // Input dibatasi 2 baris: ukur line-height + padding aktual lalu cap di situ.
+  // Kelebihan teks tetap bisa di-scroll di dalam textarea.
   function autoresize() {
     if (!textareaEl) return;
+    const cs = getComputedStyle(textareaEl);
+    const lineHeight = Number.parseFloat(cs.lineHeight) || 21;
+    const pad = (Number.parseFloat(cs.paddingTop) || 0) + (Number.parseFloat(cs.paddingBottom) || 0);
+    const max = lineHeight * 2 + pad;
     textareaEl.style.height = "auto";
-    textareaEl.style.height = Math.min(textareaEl.scrollHeight, 144) + "px";
+    textareaEl.style.height = Math.min(textareaEl.scrollHeight, max) + "px";
   }
 
   $effect(() => {
@@ -127,7 +134,8 @@
   .chatlayer-composer__input {
     flex: 1;
     resize: none;
-    max-height: 9rem;
+    overflow-y: auto;
+    max-height: 3.4rem; /* ±2 baris pada line-height 1.5 — sinkron dengan cap JS */
     min-height: 1.4rem;
     padding: 0.32rem 0;
     border: none;

@@ -5,7 +5,9 @@
 
   let { chat }: { chat: ChatInstance } = $props();
 
-  const { messages, status } = chat;
+  // Reactive reads of the `chat` prop (avoids state_referenced_locally warning).
+  const messages = $derived(chat.messages);
+  const status = $derived(chat.status);
   const showLoading = $derived($status === "submitted");
 
   let listEl: HTMLDivElement | null = $state(null);

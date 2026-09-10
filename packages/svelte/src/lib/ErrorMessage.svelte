@@ -3,7 +3,8 @@
 
   let { chat }: { chat: ChatInstance } = $props();
 
-  const { error } = chat;
+  // Reactive read of the `chat` prop (avoids state_referenced_locally warning).
+  const error = $derived(chat.error);
 
   let retrying = $state(false);
 

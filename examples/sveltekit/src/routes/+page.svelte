@@ -1,5 +1,13 @@
 <script lang="ts">
   import { ChatWidget } from "@zalwan/chatlayer-svelte";
+
+  const backends = [
+    { id: "/api/chat", label: "Mock", hint: "no keys needed" },
+    { id: "/api/chat-openai", label: "OpenAI", hint: "needs OPENAI_API_KEY" },
+    { id: "/api/chat-ollama", label: "Ollama", hint: "local, needs ollama serve" },
+  ] as const;
+
+  let endpoint: string = $state("/api/chat");
 </script>
 
 <svelte:head>
@@ -16,13 +24,19 @@
     </p>
   </header>
 
+  <section class="backends" aria-label="Backend selector">
+    {#each backends as b}
+      <button class:active={endpoint === b.id} onclick={() => (endpoint = b.id)} title={b.hint}>
+        {b.label}
+      </button>
+    {/each}
+    <span class="current">{endpoint} — {backends.find((b) => b.id === endpoint)?.hint}</span>
+  </section>
+
   <section class="frame">
-    <ChatWidget
-      endpoint="/api/chat"
-      title="ChatLayer Demo"
-      placeholder="Type a message…"
-      theme="system"
-    />
+    {#key endpoint}
+      <ChatWidget {endpoint} title="ChatLayer Demo" placeholder="Type a message…" theme="system" />
+    {/key}
   </section>
 
   <details>
@@ -73,6 +87,30 @@ await chat.send("Hello");
     overflow: hidden;
     background: #fff;
     box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+  }
+  .backends {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.9rem;
+  }
+  .backends button {
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+  }
+  .backends button.active {
+    background: #0f172a;
+    color: #fff;
+    border-color: #0f172a;
+  }
+  .backends .current {
+    font-size: 0.8rem;
+    color: #64748b;
   }
   details {
     margin-top: 1rem;
