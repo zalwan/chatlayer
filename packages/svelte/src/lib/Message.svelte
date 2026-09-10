@@ -33,7 +33,9 @@
 <style>
   .chatlayer-message {
     display: flex;
+    box-sizing: border-box;
     width: 100%;
+    max-width: 100%;
     padding: 0.28rem 0.9rem;
     animation: cl-msg-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
@@ -47,6 +49,8 @@
 
   .chatlayer-message__bubble {
     max-width: 82%;
+    min-width: 0;
+    overflow-wrap: anywhere;
     padding: 0.62em 0.95em;
     border-radius: 20px;
     line-height: 1.5;

@@ -81,6 +81,7 @@
   .chatlayer-markdown :global(pre) {
     margin: 0 0 0.6em;
     padding: 0.75em 0.9em;
+    max-width: 100%;
     background: var(--cl-pre-bg, #0f172a);
     color: var(--cl-pre-fg, #e2e8f0);
     border-radius: 8px;
@@ -93,6 +94,10 @@
     line-height: 1.5;
   }
   .chatlayer-markdown :global(table) {
+    display: block;
+    max-width: 100%;
+    width: max-content;
+    overflow-x: auto;
     border-collapse: collapse;
     margin: 0 0 0.6em;
   }

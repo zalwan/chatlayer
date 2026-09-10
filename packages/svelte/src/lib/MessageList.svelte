@@ -45,19 +45,13 @@
   .chatlayer-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 0.75rem 0 0.25rem;
+    overflow-x: hidden;
+    overflow-x: clip;
+    padding: 0.75rem 0 0.75rem;
     min-height: 0;
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--cl-border) transparent;
-    /* subtle top fade */
-    mask-image: linear-gradient(
-      to bottom,
-      transparent 0,
-      black 12px,
-      black calc(100% - 12px),
-      transparent 100%
-    );
   }
 
   .chatlayer-messages::-webkit-scrollbar {
