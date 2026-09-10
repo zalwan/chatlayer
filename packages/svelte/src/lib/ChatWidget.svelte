@@ -91,7 +91,7 @@
           stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg
         >
       {:else}
-        <!-- Sparkles + bubble — modern AI vibe -->
+        <!-- Robot — AI assistant -->
         <svg
           width="24"
           height="24"
@@ -101,10 +101,9 @@
           stroke-width="1.9"
           stroke-linecap="round"
           stroke-linejoin="round"
-          ><path d="M12 8a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4Z" /><path
-            d="M12 2v1.5M12 20.5V22M4.93 4.93l1.06 1.06M17.99 17.99l1.06 1.06M2 12h1.5M20.5 12H22M6.34 6.34 5.28 5.28M19.07 19.07l1.06-1.06"
-            opacity="0.85"
-          /><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none" /></svg
+          ><rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" /><path
+            d="M12 7v4"
+          /><line x1="8" y1="16" x2="8" y2="16" /><line x1="16" y1="16" x2="16" y2="16" /></svg
         >
       {/if}
     </span>

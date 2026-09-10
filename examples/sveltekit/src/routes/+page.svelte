@@ -7,7 +7,14 @@
     { id: "/api/chat-ollama", label: "Ollama", hint: "local, needs ollama serve" },
   ] as const;
 
+  const layouts = [
+    { id: "inline", label: "Inline" },
+    { id: "bubble", label: "Bubble (FAB)" },
+    { id: "fullscreen", label: "Fullscreen" },
+  ] as const;
+
   let endpoint: string = $state("/api/chat");
+  let layout: (typeof layouts)[number]["id"] = $state("bubble");
 </script>
 
 <svelte:head>
@@ -33,11 +40,46 @@
     <span class="current">{endpoint} — {backends.find((b) => b.id === endpoint)?.hint}</span>
   </section>
 
-  <section class="frame">
-    {#key endpoint}
-      <ChatWidget {endpoint} title="ChatLayer Demo" placeholder="Type a message…" theme="system" />
-    {/key}
+  <section class="backends" aria-label="Layout selector">
+    {#each layouts as l}
+      <button class:active={layout === l.id} onclick={() => (layout = l.id)}>
+        {l.label}
+      </button>
+    {/each}
   </section>
+
+  {#key endpoint + layout}
+    {#if layout === "inline"}
+      <section class="frame">
+        <ChatWidget
+          {endpoint}
+          {layout}
+          title="ChatLayer Demo"
+          placeholder="Type a message…"
+          theme="system"
+        />
+      </section>
+    {:else if layout === "fullscreen"}
+      <ChatWidget
+        {endpoint}
+        {layout}
+        title="ChatLayer Demo"
+        placeholder="Type a message…"
+        theme="system"
+      />
+    {:else}
+      <section class="frame frame--empty">
+        <p>Klik tombol robot di pojok kanan bawah untuk membuka chat.</p>
+      </section>
+      <ChatWidget
+        {endpoint}
+        {layout}
+        title="ChatLayer Demo"
+        placeholder="Type a message…"
+        theme="system"
+      />
+    {/if}
+  {/key}
 
   <details>
     <summary>Headless alternative (same transport)</summary>
@@ -93,6 +135,7 @@ await chat.send("Hello");
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.9rem;
+    flex-wrap: wrap;
   }
   .backends button {
     border: 1px solid #e2e8f0;
@@ -111,6 +154,14 @@ await chat.send("Hello");
   .backends .current {
     font-size: 0.8rem;
     color: #64748b;
+  }
+  .frame--empty {
+    display: grid;
+    place-items: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 1rem;
   }
   details {
     margin-top: 1rem;
