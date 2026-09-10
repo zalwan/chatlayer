@@ -23,7 +23,7 @@ Build AI chat interfaces without building chat infrastructure.
 
 | Package                    | Version | Description                                                                         |
 | -------------------------- | ------- | ----------------------------------------------------------------------------------- |
-| `@zalwan/chatlayer`        | 0.1.6   | Headless `createChat`, `ChatTransport`, NDJSON protocol, Svelte-compatible stores |
+| `@zalwan/chatlayer`        | 0.1.6   | Headless `createChat`, `ChatTransport`, NDJSON protocol, Svelte-compatible stores   |
 | `@zalwan/chatlayer-svelte` | 0.1.6   | `<ChatWidget layout>`, `MessageList`, `Message`, `Composer`, Markdown + code blocks |
 
 > Original design used `@chatlayer/*` (PRD). Published as `@zalwan/*` because `@chatlayer` org is taken on npm.

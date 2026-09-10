@@ -16,6 +16,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Sem
 ## [0.1.6] - 2026-09-09
 
 ### Changed
+
 - **FAB** `ChatWidget` bubble icon: `MessageCircle` → sparkles AI (center dot + 4 rays + 8 tick marks) — cleaner modern look, `X` `22→20` for balance.
 - **FAB** styling: flat `#0f172a` → radial gradient `120% at 30% 20%` (`#334155→#0f172a→#020617`), `3.65→3.75rem`, `border rgba(255,255,255,0.12)`, inset highlight `0 1px 0`, `hover scale 1.05 translateY(-1px)` `brightness 1.06`, focus `38bdf8`, dark gradient `f8fafc→cbd5e1`.
 
