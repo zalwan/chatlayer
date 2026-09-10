@@ -119,7 +119,7 @@
 
   .chatlayer-composer__field {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 0.5rem;
     padding: 0.42rem 0.42rem 0.42rem 0.9rem;
     border: 1px solid var(--cl-border);
