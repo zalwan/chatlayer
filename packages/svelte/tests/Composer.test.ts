@@ -41,6 +41,20 @@ describe("Composer", () => {
     expect(chat.messages.get()).toHaveLength(0);
   });
 
+  it("submits on Shift+Enter when maxLines is 1 (single-line mode)", async () => {
+    const transport = makeTransport((_req: ChatRequest) => replyEvents("hi back"));
+    const chat = createChat({ transport });
+    render(Composer, { props: { chat, maxLines: 1 } });
+
+    const input = screen.getByRole("textbox", { name: "Message" });
+    await fireEvent.input(input, { target: { value: "Hello" } });
+    await fireEvent.keyDown(input, { key: "Enter", shiftKey: true });
+
+    await waitFor(() => {
+      expect(chat.messages.get()).toHaveLength(2);
+    });
+    expect(chat.messages.get()[0].content[0].text).toBe("Hello");
+  });
   it("shows a Stop button and hides Send while streaming", async () => {
     const transport = makeBlockingTransport();
     const chat = createChat({ transport });

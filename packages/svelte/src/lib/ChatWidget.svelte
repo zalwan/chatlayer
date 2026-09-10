@@ -160,7 +160,7 @@
         {/if}
         <MessageList {chat} />
         <ErrorMessage {chat} />
-        <Composer {chat} {placeholder} />
+        <Composer {chat} {placeholder} maxLines={1} />
       </div>
       <div class="cl-panel__footer">
         <span class="cl-panel__dot"></span>

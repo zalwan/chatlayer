@@ -1,11 +1,18 @@
 <script lang="ts">
   import type { ChatInstance } from "@zalwan/chatlayer";
 
-  let { chat, placeholder = "Type a message…" }: { chat: ChatInstance; placeholder?: string } =
-    $props();
+  let {
+    chat,
+    placeholder = "Type a message…",
+    maxLines = 2,
+  }: { chat: ChatInstance; placeholder?: string; maxLines?: number } = $props();
 
   // Reactive read of the `chat` prop (avoids state_referenced_locally warning).
   const status = $derived(chat.status);
+
+  // Mode 1 baris (dipakai layout bubble): tidak ada newline, Enter selalu kirim.
+  const singleLine = $derived(Math.max(1, Math.floor(maxLines)) <= 1);
+  const lineCap = $derived(Math.max(1, Math.floor(maxLines)));
 
   let value = $state("");
 
@@ -14,14 +21,16 @@
 
   let textareaEl: HTMLTextAreaElement | null = $state(null);
 
-  // Input dibatasi 2 baris: ukur line-height + padding aktual lalu cap di situ.
+  // Input dibatasi `maxLines` baris: ukur line-height + padding aktual lalu cap di situ.
   // Kelebihan teks tetap bisa di-scroll di dalam textarea.
   function autoresize() {
     if (!textareaEl) return;
     const cs = getComputedStyle(textareaEl);
     const lineHeight = Number.parseFloat(cs.lineHeight) || 21;
-    const pad = (Number.parseFloat(cs.paddingTop) || 0) + (Number.parseFloat(cs.paddingBottom) || 0);
-    const max = lineHeight * 2 + pad;
+    const pad =
+      (Number.parseFloat(cs.paddingTop) || 0) + (Number.parseFloat(cs.paddingBottom) || 0);
+    const max = lineHeight * lineCap + pad;
+    textareaEl.style.maxHeight = max + "px";
     textareaEl.style.height = "auto";
     textareaEl.style.height = Math.min(textareaEl.scrollHeight, max) + "px";
   }
@@ -40,7 +49,7 @@
   }
 
   function onKeydown(event: KeyboardEvent) {
-    if (event.key === "Enter" && !event.shiftKey) {
+    if (event.key === "Enter" && (!event.shiftKey || singleLine)) {
       event.preventDefault();
       submit();
     }
@@ -95,7 +104,7 @@
       </button>
     {/if}
   </div>
-  <span class="chatlayer-composer__hint">↵ kirim • ⇧↵ baris baru</span>
+  <span class="chatlayer-composer__hint">{singleLine ? "↵ kirim" : "↵ kirim • ⇧↵ baris baru"}</span>
 </div>
 
 <style>
