@@ -13,6 +13,26 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Sem
 
 ---
 
+## [0.1.7] - 2026-09-10
+
+### Added
+
+- **Composer** new `maxLines` prop (default `2`): bubble layout uses single-line input (`Shift+Enter` submits, hint shows `↵ kirim` only).
+- **Examples** real `OpenAI` (`/api/chat-openai`, `OPENAI_API_KEY`) and `Ollama` (`/api/chat-ollama`, local) backends sharing `src/lib/server/chat-events.ts`; demo page gets backend + layout (`inline|bubble|fullscreen`) switchers.
+
+### Changed
+
+- **FAB** `ChatWidget` bubble icon: sparkles AI → robot (body + antenna + dot eyes, `currentColor` so it follows the theme).
+- **Composer** input vertically centered with the send/stop button (`align-items: center`).
+
+### Fixed
+
+- **Svelte 5** `state_referenced_locally` warnings in `Composer`, `ErrorMessage`, `MessageList` — prop stores now read via `$derived`.
+- **Horizontal scrollbar** in the message list: `overflow-x` locked, message rows self-sufficient (`border-box`, `max-width: 100%`), wide Markdown `table`/`pre` scroll inside the bubble instead of pushing the list.
+- **CI** `format:check` failure on `CHANGELOG.md` / `README.md` (whitespace).
+
+---
+
 ## [0.1.6] - 2026-09-09
 
 ### Changed
@@ -88,7 +108,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Sem
 
 ---
 
-[Unreleased]: https://github.com/zalwan/chatlayer/compare/v0.1.6...HEAD
+[Unreleased]: https://github.com/zalwan/chatlayer/compare/v0.1.7...HEAD
+[0.1.7]: https://github.com/zalwan/chatlayer/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/zalwan/chatlayer/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/zalwan/chatlayer/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/zalwan/chatlayer/compare/v0.1.3...v0.1.4
